@@ -17,7 +17,18 @@ import CreatedMatches from "../components/CreatedMatches.jsx";
  * - MediaControls for navigating through the simulation steps and controlling playback.
  */
 function SimulationPanel(props) {
-    const {params, sessionId, onStop, hasStopped, isTimeSensitive, allSteps, currentStepIndex, setCurrentStepIndex, isPlaying, setIsPlaying} = props;
+    const {
+        params,
+        sessionId,
+        onStop,
+        hasStopped,
+        isTimeSensitive,
+        allSteps,
+        currentStepIndex,
+        setCurrentStepIndex,
+        isPlaying,
+        setIsPlaying
+    } = props;
     const previousStepCountRef = React.useRef(0);
     const totalSteps = allSteps?.length || 0;
     const isOnFinalStep = totalSteps === 0 || currentStepIndex === totalSteps - 1;
@@ -27,8 +38,7 @@ function SimulationPanel(props) {
         if (allSteps.length > previousStepCountRef.current && allSteps.length > 0) {
             setIsPlaying(true);
             previousStepCountRef.current = allSteps.length;
-        }
-        else if (allSteps.length > 0 && previousStepCountRef.current === 0) {
+        } else if (allSteps.length > 0 && previousStepCountRef.current === 0) {
             previousStepCountRef.current = allSteps.length;
         }
     }, [allSteps.length, setIsPlaying]);

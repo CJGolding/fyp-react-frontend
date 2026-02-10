@@ -16,13 +16,13 @@ function StatisticsPanel({isTimeSensitive, stats, isLoading}) {
     if (isLoading) {
         return (
             <Box sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    minHeight: '60vh',
-                    gap: 2
-                }}
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                minHeight: '60vh',
+                gap: 2
+            }}
             >
                 <CircularProgress size={60}/>
                 <Typography variant="h6" color="text.secondary">Loading statistics...</Typography>
@@ -57,11 +57,11 @@ function StatisticsPanel({isTimeSensitive, stats, isLoading}) {
                 <LineChart
                     title={isTimeSensitive ? "Min Imbalance & Min Priority Over Time" : "Min Imbalance Over Time"}
                     datasets={isTimeSensitive ? [
-                                {label: 'Min Imbalance', data: stats.min_imbalance, borderColour: getLineColour(2)},
-                                {label: 'Min Priority', data: stats.min_priority, borderColour: getLineColour(3)}
-                            ] : [
-                                {label: 'Min Imbalance', data: stats.min_imbalance, borderColour: getLineColour(2)}
-                            ]
+                        {label: 'Min Imbalance', data: stats.min_imbalance, borderColour: getLineColour(2)},
+                        {label: 'Min Priority', data: stats.min_priority, borderColour: getLineColour(3)}
+                    ] : [
+                        {label: 'Min Imbalance', data: stats.min_imbalance, borderColour: getLineColour(2)}
+                    ]
                     }
                     yAxisLabel="Value"
                 />

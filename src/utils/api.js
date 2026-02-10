@@ -141,7 +141,7 @@ export function WebSocketConnection(sessionId, isConnected) {
     }, [sessionId, isConnected]);
 
 
-    return { steps, wsError };
+    return {steps, wsError};
 }
 
 

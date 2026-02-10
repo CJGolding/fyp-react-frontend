@@ -1,4 +1,4 @@
-import { NODE_SIZE_CONSTANT, SIBLING_DISTANCE, TREE_DISTANCE } from "./constants.js";
+import {NODE_SIZE_CONSTANT, SIBLING_DISTANCE, TREE_DISTANCE} from "./constants.js";
 
 /**
  * Implements the Reingold-Tilford "tidy" tree layout algorithm to calculate the X and Y positions of nodes in a binary tree.

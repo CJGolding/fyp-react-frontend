@@ -1,7 +1,13 @@
 import React, {useEffect, useRef} from 'react';
 import {Grid, Paper, Typography} from '@mui/material';
 import Legend from "./Legend.jsx";
-import {GAME_HEAP_LEGEND, HORIZONTAL_SPACING, NODE_SIZE, SimulationColours, VERTICAL_SPACING} from "../utils/constants.js";
+import {
+    GAME_HEAP_LEGEND,
+    HORIZONTAL_SPACING,
+    NODE_SIZE,
+    SimulationColours,
+    VERTICAL_SPACING
+} from "../utils/constants.js";
 import {configureZoom, createZoomHandlers, initialiseSVG, renderGameNode} from "../utils/svgHelpers.js";
 import ZoomButtonGroup from "./ZoomButtonGroup.jsx";
 import calculateTreeLayout from "../utils/generateGameHeap.js";

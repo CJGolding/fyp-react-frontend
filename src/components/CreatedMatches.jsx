@@ -24,7 +24,7 @@ import {SimulationColours} from "../utils/constants.js";
  * - Providing an expandable section to show detailed information about the players in each team when the row is clicked.
  * - Conditionally rendering the priority column and wait times based on whether the simulation is time-sensitive or not.
  */
-function MatchRow ({match, matchIndex, isTimeSensitive}) {
+function MatchRow({match, matchIndex, isTimeSensitive}) {
     // Toggle to expand / collapse a match details row
     const [isOpen, setIsOpen] = useState(false);
 
@@ -124,7 +124,7 @@ function MatchRow ({match, matchIndex, isTimeSensitive}) {
  * - Handling the case when no matches have been created yet by showing an appropriate message.
  * - Adapting the displayed information based on whether the type of simulation.
  */
-export default function CreatedMatches ({matches, isTimeSensitive}) {
+export default function CreatedMatches({matches, isTimeSensitive}) {
     const matchesLength = matches?.length || 0;
 
     return (

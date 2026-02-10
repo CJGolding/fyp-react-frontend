@@ -8,7 +8,7 @@ import ErrorDisplay from "./ErrorDisplay.jsx";
  * - Input validation with real-time feedback.
  * - Dynamic form fields based on selected mode.
  */
-function ConfigurationForm({ onInitialised }) {
+function ConfigurationForm({onInitialised}) {
     // State management for form inputs, submission status and error handling
     const [mode, setMode] = useState("Unrestricted");
     const [teamSize, setTeamSize] = useState(2);
