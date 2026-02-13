@@ -17,7 +17,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, LineCont
 /**
  * Reusable LineChart component that uses Chart.js to display statistical metrics, with the option for multiple datasets with standard formatting.
  */
-function LineChart({title, datasets, yAxisLabel}) {
+export default function LineChart({title, datasets, yAxisLabel}) {
     const chartRef = useRef(null);
     const chartInstanceRef = useRef(null);
 
@@ -81,6 +81,3 @@ function LineChart({title, datasets, yAxisLabel}) {
 
     return <canvas ref={chartRef}></canvas>;
 }
-
-
-export default LineChart;

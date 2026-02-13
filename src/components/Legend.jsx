@@ -4,7 +4,7 @@ import React from "react";
 /**
  * Simple helper component to display a legend for either the player queue or game heap.
  */
-function Legend({items}) {
+export default function Legend({items}) {
     return (
         <Stack direction="row" spacing={1} sx={{mb: 2, flexWrap: 'wrap', gap: 1}}>
             {items.map((item) => (
@@ -22,5 +22,3 @@ function Legend({items}) {
         </Stack>
     );
 }
-
-export default Legend;

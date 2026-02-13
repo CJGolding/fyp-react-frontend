@@ -3,12 +3,10 @@ import React from "react";
 import ConfigurationForm from "../components/ConfigurationForm.jsx";
 
 
-function ConfigurationPanel({onInitialised}) {
+export default function ConfigurationPanel({onInitialised}) {
     return (
         <Grid container spacing={3}>
             <ConfigurationForm onInitialised={onInitialised}/>
         </Grid>
     )
 }
-
-export default ConfigurationPanel;

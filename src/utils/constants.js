@@ -22,6 +22,7 @@ export const SimulationColours = {
     TEAM_X: '#2196F3',
     CREATED: '#2196F3',
     TEAM_Y: '#FFC107',
+    GAME_NOT_FOUND: '#FFC107',
     INSERTED: '#8BC34A',
     REMOVED: '#F44336',
     TEXT_DARK: '#000000',
@@ -66,3 +67,18 @@ export const GAME_HEAP_LEGEND = [
     {label: 'Removed', fill: SimulationColours.REMOVED, text: SimulationColours.TEXT_LIGHT},
     {label: 'Created', fill: SimulationColours.CREATED, text: SimulationColours.TEXT_LIGHT}
 ];
+
+export const QUEUE_STEP_LABELS = {
+    INSERT: {message: 'Player added to queue', colour: SimulationColours.INSERTED},
+    REMOVE: {message: 'Player removed from queue', colour: SimulationColours.REMOVED},
+    ANCHOR: {message: 'Selecting anchor player', colour: SimulationColours.ANCHOR},
+    GAME_FOUND: {message: 'Best game found', colour: SimulationColours.CREATED},
+    GAME_NOT_FOUND: {message:'No valid game found', colour: SimulationColours.GAME_NOT_FOUND},
+}
+
+export const HEAP_STEP_LABELS = {
+    INSERT: {message: 'Game added to heap', colour: SimulationColours.INSERTED},
+    REMOVE: {message: 'Game removed from heap', colour: SimulationColours.REMOVED},
+}
+
+export const IDLE_STEP_LABEL = {message: 'Idle', colour: SimulationColours.DEFAULT}

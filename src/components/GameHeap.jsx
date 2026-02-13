@@ -103,11 +103,11 @@ export default function GameHeap({heapSnapshot, gameRegistry}) {
 
 
     return (
-        <Grid item size={{xs: 12}}>
+        <Grid size={{xs: 12}}>
             <Paper style={{padding: 16}}>
                 <Grid container sx={{height: '35vh', flexDirection: 'column', width: '100%', overflow: 'hidden'}}>
                     <Grid container sx={{flexShrink: 0, alignItems: 'center', mb: 1}}>
-                        <Grid item sx={{flex: 1}}>
+                        <Grid sx={{flex: 1}}>
                             <Typography variant="h6">
                                 Game Heap ({heapSize})
                             </Typography>
@@ -119,10 +119,10 @@ export default function GameHeap({heapSnapshot, gameRegistry}) {
                             disabled={heapSize === 0}
                         />
                     </Grid>
-                    <Grid item sx={{flexShrink: 0, mb: 1}}>
+                    <Grid sx={{flexShrink: 0, mb: 1}}>
                         <Legend items={GAME_HEAP_LEGEND}/>
                     </Grid>
-                    <Grid item ref={containerRef} sx={{
+                    <Grid ref={containerRef} sx={{
                         overflow: 'hidden',
                         flex: 1,
                         minHeight: 0,

@@ -7,7 +7,7 @@ import ErrorDisplay from "./ErrorDisplay.jsx";
  * Component for inserting players into the matchmaking session, either manually or automatically.
  * Provides form inputs for both modes and handles API interactions for player insertion and match creation.
  */
-function InsertionForm({sessionId, hasStopped, isPlaying, isOnFinalStep}) {
+export default function InsertionForm({sessionId, hasStopped, isPlaying, isOnFinalStep}) {
     // State management for form inputs, submission status, and error handling
     const [insertionMode, setInsertionMode] = useState("Manual");
     const [skill, setSkill] = useState(1500);
@@ -81,11 +81,11 @@ function InsertionForm({sessionId, hasStopped, isPlaying, isOnFinalStep}) {
     const formValid = Object.keys(errors).length === 0;
 
     return (
-        <Grid item size={{xs: 12}}>
+        <Grid size={{xs: 12}}>
             <Paper style={{padding: 16, height: '30vh', display: 'flex', flexDirection: 'column'}}>
                 <Grid container spacing={3} sx={{flex: 1, alignContent: 'flex-start'}}>
 
-                    <Grid item size={{xs: 12, sm: 6}}>
+                    <Grid size={{xs: 12, sm: 6}}>
                         <TextField
                             select
                             label="Insertion Mode"
@@ -100,7 +100,7 @@ function InsertionForm({sessionId, hasStopped, isPlaying, isOnFinalStep}) {
                     </Grid>
 
                     {isManualInsertion ? (
-                            <Grid item size={{xs: 12, sm: 6}}>
+                            <Grid size={{xs: 12, sm: 6}}>
                                 <TextField
                                     label="Player Skill"
                                     type="number"
@@ -114,7 +114,7 @@ function InsertionForm({sessionId, hasStopped, isPlaying, isOnFinalStep}) {
                             </Grid>
                         ) :
                         (<>
-                                <Grid item size={{xs: 12, sm: 6}}>
+                                <Grid size={{xs: 12, sm: 6}}>
                                     <TextField
                                         label="Count"
                                         type="number"
@@ -126,7 +126,7 @@ function InsertionForm({sessionId, hasStopped, isPlaying, isOnFinalStep}) {
                                         error={Boolean(errors.numPlayers)}
                                     />
                                 </Grid>
-                                <Grid item size={{xs: 12, sm: 6}}>
+                                <Grid size={{xs: 12, sm: 6}}>
                                     <TextField
                                         label="Mean"
                                         type="number"
@@ -138,7 +138,7 @@ function InsertionForm({sessionId, hasStopped, isPlaying, isOnFinalStep}) {
                                         error={Boolean(errors.mean)}
                                     />
                                 </Grid>
-                                <Grid item size={{xs: 12, sm: 6}}>
+                                <Grid size={{xs: 12, sm: 6}}>
                                     <TextField
                                         label="Std Dev"
                                         type="number"
@@ -158,7 +158,7 @@ function InsertionForm({sessionId, hasStopped, isPlaying, isOnFinalStep}) {
                 <ErrorDisplay error={error} onClose={() => setError(null)}/>
 
                 <Grid container spacing={6}>
-                    <Grid item size={{xs: 12}}>
+                    <Grid size={{xs: 12}}>
                         <Button
                             variant="contained"
                             fullWidth
@@ -172,7 +172,7 @@ function InsertionForm({sessionId, hasStopped, isPlaying, isOnFinalStep}) {
                             }
                         </Button>
                     </Grid>
-                    <Grid item size={{xs: 12}}>
+                    <Grid size={{xs: 12}}>
                         <Button
                             variant="contained"
                             fullWidth
@@ -189,5 +189,3 @@ function InsertionForm({sessionId, hasStopped, isPlaying, isOnFinalStep}) {
         </Grid>
     );
 }
-
-export default InsertionForm;

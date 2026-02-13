@@ -7,7 +7,7 @@ import {Add as ZoomInIcon, Remove as ZoomOutIcon, RestartAlt as ResetIcon} from 
  */
 export default function ZoomButtonGroup({handleZoomIn, handleZoomOut, handleZoomReset, disabled}) {
     return (
-        <Grid item>
+        <Grid>
             <ButtonGroup size="small" variant="outlined">
                 <Button onClick={handleZoomOut} disabled={disabled}>
                     <ZoomOutIcon fontSize="small"/>

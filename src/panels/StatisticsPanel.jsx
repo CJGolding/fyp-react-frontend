@@ -6,7 +6,7 @@ import {STATISTIC_COLOURS} from "../utils/constants.js";
 /**
  * Component responsible for rendering the statistics panel of charts that visualise key simulation metrics over time.
  */
-function StatisticsPanel({isTimeSensitive, stats, isLoading}) {
+export default function StatisticsPanel({isTimeSensitive, stats, isLoading}) {
     // Helper function to assign unique colours to each dataset in the charts based on the index
     const getLineColour = (index) => {
         return STATISTIC_COLOURS[index % STATISTIC_COLOURS.length];
@@ -42,7 +42,7 @@ function StatisticsPanel({isTimeSensitive, stats, isLoading}) {
     // Default rendering case
     return (
         <Grid container spacing={3}>
-            <Grid item size={{xs: 12, md: 6}}>
+            <Grid size={{xs: 12, md: 6}}>
                 <LineChart
                     title="Queue & Heap Size Over Time"
                     datasets={[
@@ -53,7 +53,7 @@ function StatisticsPanel({isTimeSensitive, stats, isLoading}) {
                 />
             </Grid>
 
-            <Grid item size={{xs: 12, md: 6}}>
+            <Grid size={{xs: 12, md: 6}}>
                 <LineChart
                     title={isTimeSensitive ? "Min Imbalance & Min Priority Over Time" : "Min Imbalance Over Time"}
                     datasets={isTimeSensitive ? [
@@ -68,7 +68,7 @@ function StatisticsPanel({isTimeSensitive, stats, isLoading}) {
             </Grid>
 
             {isTimeSensitive && (
-                <Grid item size={{xs: 12, md: 6}}>
+                <Grid size={{xs: 12, md: 6}}>
                     <LineChart
                         title="Max Waiting Time Over Time"
                         datasets={[
@@ -81,5 +81,3 @@ function StatisticsPanel({isTimeSensitive, stats, isLoading}) {
         </Grid>
     );
 }
-
-export default StatisticsPanel;

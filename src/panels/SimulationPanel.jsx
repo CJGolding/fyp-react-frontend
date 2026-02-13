@@ -6,6 +6,12 @@ import PlayerQueue from "../components/PlayerQueue.jsx";
 import MediaControls from "../components/MediaControls.jsx";
 import GameHeap from "../components/GameHeap.jsx";
 import CreatedMatches from "../components/CreatedMatches.jsx";
+import {HEAP_STEP_LABELS, IDLE_STEP_LABEL, QUEUE_STEP_LABELS} from "../utils/constants.js";
+
+
+function getStepLabel(queueAction, heapAction) {
+    return QUEUE_STEP_LABELS[queueAction] || HEAP_STEP_LABELS[heapAction] || IDLE_STEP_LABEL;
+}
 
 /**
  * Main panel for visualizing the matchmaking simulation, including:
@@ -16,7 +22,7 @@ import CreatedMatches from "../components/CreatedMatches.jsx";
  * - CreatedMatches to show the matches that have been created so far.
  * - MediaControls for navigating through the simulation steps and controlling playback.
  */
-function SimulationPanel(props) {
+export default function SimulationPanel(props) {
     const {
         params,
         sessionId,
@@ -51,6 +57,7 @@ function SimulationPanel(props) {
         const matches = [];
 
         allSteps.forEach((step, _) => {
+            step.label = getStepLabel(step.queue_snapshot.action, step.heap_snapshot.action);
             // Add new players to registry and keep them after removal for match creation
             if (step.queue_snapshot && step.queue_snapshot.add) {
                 const player = step.queue_snapshot.add;
@@ -121,12 +128,16 @@ function SimulationPanel(props) {
                 add: null,
                 target_index: null,
                 action: "IDLE"
-            }
+            },
+            label: IDLE_STEP_LABEL
         },
         playerRegistry: {},
         gameRegistry: {},
         createdMatches: []
     };
+    console.log(currentSnapshot);
+
+    const currentStepLabel = currentSnapshot.step.label;
 
     // Step change handler that either accepts a direct index or callback function for step forward/backward
     const handleStepChange = (stepIndexOrCallback) => {
@@ -173,9 +184,8 @@ function SimulationPanel(props) {
                 onStepChange={handleStepChange}
                 isPlaying={isPlaying}
                 setIsPlaying={setIsPlaying}
+                stepLabel={currentStepLabel}
             />
         </>
     )
 }
-
-export default SimulationPanel;

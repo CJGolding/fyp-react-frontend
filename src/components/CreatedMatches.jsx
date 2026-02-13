@@ -128,13 +128,13 @@ export default function CreatedMatches({matches, isTimeSensitive}) {
     const matchesLength = matches?.length || 0;
 
     return (
-        <Grid item size={{xs: 12}}>
+        <Grid size={{xs: 12}}>
             <Paper style={{padding: 16}}>
                 <Grid container sx={{height: '35vh', flexDirection: 'column', width: '100%', overflow: 'hidden'}}>
                     <Typography variant="h6" gutterBottom sx={{flexShrink: 0}}>
                         Created Matches ({matchesLength})
                     </Typography>
-                    <Grid item sx={{overflow: 'auto', flex: 1, minHeight: 0, width: '100%'}}>
+                    <Grid sx={{overflow: 'auto', flex: 1, minHeight: 0, width: '100%'}}>
                         {matchesLength === 0 ? (
                             <Typography variant="body2" color="text.secondary" sx={{textAlign: 'center', py: 4}}>
                                 No matches created yet

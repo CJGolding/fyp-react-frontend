@@ -82,16 +82,16 @@ export default function PlayerQueue({queueSnapshot, playerRegistry, isTimeSensit
     const queueLength = queueSnapshot?.order?.length || 0;
 
     return (
-        <Grid item size={{xs: 12}}>
+        <Grid size={{xs: 12}}>
             <Paper style={{padding: 16}}>
                 <Grid container sx={{height: '35vh', flexDirection: 'column', width: '100%', overflow: 'hidden'}}>
-                    <Grid item sx={{flexShrink: 0}}>
+                    <Grid sx={{flexShrink: 0}}>
                         <Typography variant="h6" gutterBottom>Player Queue ({queueLength})</Typography>
                     </Grid>
-                    <Grid item sx={{flexShrink: 0, mb: 1}}>
+                    <Grid sx={{flexShrink: 0, mb: 1}}>
                         <Legend items={PLAYER_QUEUE_LEGEND}/>
                     </Grid>
-                    <Grid item ref={containerRef} sx={{
+                    <Grid ref={containerRef} sx={{
                         overflowY: 'auto',
                         overflowX: 'hidden',
                         flex: 1,

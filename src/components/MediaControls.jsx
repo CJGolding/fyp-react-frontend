@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {Box, IconButton, Paper, Slider, Typography} from "@mui/material";
+import {Box, Chip, IconButton, Paper, Slider, Typography} from "@mui/material";
 
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
@@ -11,7 +11,7 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import {ANIMATION_DELAY_MS} from "../utils/constants.js";
 
-function MediaControls({onStop, hasStopped, currentStepIndex, totalSteps, onStepChange, isPlaying, setIsPlaying}) {
+export default function MediaControls({onStop, hasStopped, currentStepIndex, totalSteps, onStepChange, isPlaying, setIsPlaying, stepLabel}) {
 
     const isAtLastStep = currentStepIndex === totalSteps - 1;
 
@@ -55,14 +55,24 @@ function MediaControls({onStop, hasStopped, currentStepIndex, totalSteps, onStep
                     onChange={(_, v) => onStepChange(v)}
                 />
 
-                <Typography
-                    variant="caption"
-                    align="center"
-                    display="block"
-                    gutterBottom
+                <Box
+                    flexDirection="column"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    gap={1}
                 >
-                    {currentStepIndex + 1} / {totalSteps} steps
-                </Typography>
+                    <Typography
+                        sx={{ color: stepLabel.colour }}
+                    >
+                        {stepLabel.message}
+                    </Typography>
+                    <Chip
+                        label={`${currentStepIndex + 1} / ${totalSteps}`}
+                        size="small"
+                    />
+                </Box>
+
 
                 <Box
                     sx={{
@@ -112,5 +122,3 @@ function MediaControls({onStop, hasStopped, currentStepIndex, totalSteps, onStep
         </Paper>
     );
 }
-
-export default MediaControls;

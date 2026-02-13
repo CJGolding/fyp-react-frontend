@@ -1,7 +1,7 @@
 import {Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
 import React from "react";
 
-function Parameters({params}) {
+export default function Parameters({params}) {
     const displayParams = Object.fromEntries(
         Object.entries(params).filter(([key, value]) =>
             key !== 'sessionId' &&
@@ -23,7 +23,7 @@ function Parameters({params}) {
     }
 
     return (
-        <Grid item size={{xs: 12}}>
+        <Grid size={{xs: 12}}>
             <Paper style={{padding: 16, height: '35vh', display: 'flex', flexDirection: 'column'}}>
                 <TableContainer sx={{flex: 1, overflow: 'hidden'}}>
                     <Table sx={{height: '100%'}}>
@@ -45,5 +45,3 @@ function Parameters({params}) {
         </Grid>
     )
 }
-
-export default Parameters;

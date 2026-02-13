@@ -4,7 +4,7 @@ import {Alert, Box} from '@mui/material';
 /**
  * Simple helper component to display error messages in a consistent manner everywhere.
  */
-function ErrorDisplay({error, onClose}) {
+export default function ErrorDisplay({error, onClose}) {
     if (!error) return null;
 
     return (
@@ -18,6 +18,3 @@ function ErrorDisplay({error, onClose}) {
         </Box>
     );
 }
-
-export default ErrorDisplay;
-
