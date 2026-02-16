@@ -60,7 +60,7 @@ export default function ConfigurationForm({onInitialised}) {
         if (fairnessWeight < 0.1 || fairnessWeight > 10.0) e.fairnessWeight = true;
         if ((queueWeight < 0.1 || queueWeight > 10.0) && isTimeSensitive) e.queueWeight = true;
         return e;
-    }, [teamSize, pNorm, qNorm, fairnessWeight, queueWeight]);
+    }, [teamSize, pNorm, qNorm, fairnessWeight, queueWeight, isTimeSensitive]);
     const formValid = Object.keys(errors).length === 0;
 
     return (

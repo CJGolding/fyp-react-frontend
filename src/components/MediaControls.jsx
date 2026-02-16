@@ -32,7 +32,7 @@ export default function MediaControls({onStop, hasStopped, currentStepIndex, tot
         }, ANIMATION_DELAY_MS);
 
         return () => clearInterval(intervalId);
-    }, [isPlaying, totalSteps, onStepChange]);
+    }, [isPlaying, totalSteps, onStepChange, setIsPlaying]);
 
     return (
         <Paper
