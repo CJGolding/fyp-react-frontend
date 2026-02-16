@@ -206,7 +206,7 @@ function centerNodesBetween(leftNode, rightNode) {
  * which are used to detect overlaps and ensure that all nodes are visible on the screen.
  */
 function getLeftContour(node, modSum, values) {
-    if (!values.hasOwnProperty(node.yPos)) {
+    if (!Object.prototype.hasOwnProperty.call(values, node.yPos)) {
         values[node.yPos] = node.xPos + modSum;
     } else {
         values[node.yPos] = Math.min(values[node.yPos], node.xPos + modSum);
@@ -223,7 +223,7 @@ function getLeftContour(node, modSum, values) {
  * which are used to detect overlaps and ensure that all nodes are visible on the screen.
  */
 function getRightContour(node, modSum, values) {
-    if (!values.hasOwnProperty(node.yPos)) {
+    if (!Object.prototype.hasOwnProperty.call(values, node.yPos)) {
         values[node.yPos] = node.xPos + modSum;
     } else {
         values[node.yPos] = Math.max(values[node.yPos], node.xPos + modSum);
@@ -296,10 +296,13 @@ export default function calculateTreeLayout(games) {
     const root = arrayToTree(games);
     if (!root) return [];
 
+    // Post-order traversal
     calculateInitialX(root);
 
+    // First pre-order traversal
     checkAllChildrenOnScreen(root);
 
+    // Second pre-order traversal
     calculateFinalPositions(root, 0);
 
     return flattenTree(root);
