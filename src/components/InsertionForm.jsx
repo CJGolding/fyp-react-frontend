@@ -1,6 +1,6 @@
 import React, {useMemo, useState} from "react";
 import {Button, CircularProgress, Grid, MenuItem, Paper, TextField} from "@mui/material";
-import {createMatch, insertPlayers} from "../utils/api.js";
+import {createMatch, insertPlayers, insertPlayersAutomatically, insertPlayersManually} from "../utils/api.js";
 import ErrorDisplay from "./ErrorDisplay.jsx";
 
 /**
@@ -42,7 +42,14 @@ export default function InsertionForm({sessionId, hasStopped, isPlaying, isOnFin
         setIsInserting(true);
         setError(null);
         try {
-            const data = await insertPlayers(sessionId, isManualInsertion, skill, numPlayers, mean, stdDev);
+            let data;
+            if (isManualInsertion) {
+                data = await insertPlayersManually({sessionId, skill});
+            }
+            else {
+                data = await insertPlayersAutomatically({sessionId, numPlayers, mean, stdDev});
+            }
+
             console.log('Insertion started:', data);
         } catch (err) {
             setError(err.message);

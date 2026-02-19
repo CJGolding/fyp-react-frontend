@@ -39,16 +39,17 @@ export async function initialiseSession(requestData) {
 }
 
 /**
- * Wrapper function to send a request to insert players into the matchmaking session, dynamically handling the following modes:
- * - Manual mode: inserting a single player with specified skill.
- * - Automatic mode: inserting multiple players with skills generated from a normal distribution defined by mean and std dev.
+ * Wrapper function to send a request to insert a single player with specified skill into the matchmaking session
  */
-export async function insertPlayers(sessionId, isManualInsertion, manualSkill, numPlayers, mean, stdDev) {
-    const requestData = isManualInsertion ?
-        {sessionId, mode: "Manual", skill: manualSkill} :
-        {sessionId, mode: "Automatic", numPlayers, mean, stdDev};
+export async function insertPlayersAutomatically(requestData) {
+    return await postRequest('insert_automatically', requestData);
+}
 
-    return await postRequest('insert', requestData)
+/**
+ * Wrapper function to send a request to insert multiple players with skills generated from a normal distribution defined by mean and std dev into the matchmaking session
+ */
+export async function insertPlayersManually(requestData) {
+    return await postRequest('insert_manually', requestData);
 }
 
 /**

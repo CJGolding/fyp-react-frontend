@@ -52,7 +52,8 @@ export default function LineChart({title, datasets, yAxisLabel}) {
                     data: dataset.data,
                     borderColor: dataset.borderColour,
                     pointRadius: 0,
-                    pointHoverRadius: 0
+                    pointHoverRadius: 0,
+                    spanGaps: false
                 }))
             },
             options: {
