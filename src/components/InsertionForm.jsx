@@ -113,7 +113,7 @@ export default function InsertionForm({sessionId, hasStopped, isPlaying, isOnFin
                                     type="number"
                                     value={skill}
                                     onChange={(e) => setSkill(Number(e.target.value))}
-                                    inputProps={{min: 0, max: 5000, step: 1}}
+                                    slotProps={{htmlInput: {min: 0, max: 5000, step: 100}}}
                                     fullWidth
                                     disabled={isFormDisabled}
                                     error={Boolean(errors.skill)}
@@ -127,7 +127,7 @@ export default function InsertionForm({sessionId, hasStopped, isPlaying, isOnFin
                                         type="number"
                                         value={numPlayers}
                                         onChange={(e) => setNumPlayers(Number(e.target.value))}
-                                        inputProps={{min: 1, max: 100, step: 1}}
+                                        slotProps={{htmlInput: {min: 1, max: 100, step: 10}}}
                                         fullWidth
                                         disabled={isFormDisabled}
                                         error={Boolean(errors.numPlayers)}
@@ -139,7 +139,7 @@ export default function InsertionForm({sessionId, hasStopped, isPlaying, isOnFin
                                         type="number"
                                         value={mean}
                                         onChange={(e) => setMean(Number(e.target.value))}
-                                        inputProps={{min: 0, max: 5000, step: 1}}
+                                        slotProps={{htmlInput: {min: 0, max: 5000, step: 100}}}
                                         fullWidth
                                         disabled={isFormDisabled}
                                         error={Boolean(errors.mean)}
@@ -151,7 +151,7 @@ export default function InsertionForm({sessionId, hasStopped, isPlaying, isOnFin
                                         type="number"
                                         value={stdDev}
                                         onChange={(e) => setStdDev(Number(e.target.value))}
-                                        inputProps={{min: 0, max: 1000, step: 1}}
+                                        slotProps={{htmlInput: {min: 0, max: 1000, step: 100}}}
                                         fullWidth
                                         disabled={isFormDisabled}
                                         error={Boolean(errors.stdDev)}
