@@ -1,6 +1,6 @@
 import React, {useMemo, useState} from "react";
 import {Button, CircularProgress, Grid, MenuItem, Paper, TextField} from "@mui/material";
-import {createMatch, insertPlayers, insertPlayersAutomatically, insertPlayersManually} from "../utils/api.js";
+import {createMatch, insertPlayersAutomatically, insertPlayersManually} from "../utils/api.js";
 import ErrorDisplay from "./ErrorDisplay.jsx";
 
 /**

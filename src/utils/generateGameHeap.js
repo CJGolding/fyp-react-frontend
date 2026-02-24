@@ -35,31 +35,6 @@ class TreeNode {
         const index = this.parent.children.indexOf(this);
         return this.parent.children[index - 1];
     }
-
-    getNextSibling() {
-        if (!this.parent) return null;
-        const index = this.parent.children.indexOf(this);
-        if (index < this.parent.children.length - 1) {
-            return this.parent.children[index + 1];
-        }
-        return null;
-    }
-
-    getLeftMostSibling() {
-        if (!this.parent) return null;
-        if (this.isLeftMost()) return null;
-        return this.parent.children[0];
-    }
-
-    getLeftMostChild() {
-        if (this.children.length === 0) return null;
-        return this.children[0];
-    }
-
-    getRightMostChild() {
-        if (this.children.length === 0) return null;
-        return this.children[this.children.length - 1];
-    }
 }
 
 /**
@@ -90,7 +65,6 @@ function arrayToTree(heap, parent = null, index = 0, depth = 0) {
  * Performs a post-order traversal to calculate initial X positions for each node based on their children and siblings.
  */
 function calculateInitialX(node) {
-    // Process children first (post-order traversal)
     node.children.forEach(child => calculateInitialX(child));
 
     // If a leaf node
@@ -103,17 +77,19 @@ function calculateInitialX(node) {
     }
     // If there is only one child
     else if (node.children.length === 1) {
+        const leftChild = node.children[0];
+
         if (node.isLeftMost()) {
-            node.xPos = node.children[0].xPos;
+            node.xPos = leftChild.xPos;
         } else {
             node.xPos = node.getPreviousSibling().xPos + NODE_SIZE_CONSTANT + SIBLING_DISTANCE;
-            node.mod = node.xPos - node.children[0].xPos;
+            node.mod = node.xPos - leftChild.xPos;
         }
     }
-    // If there are multiple children
+    // If there are two children
     else {
-        const leftChild = node.getLeftMostChild();
-        const rightChild = node.getRightMostChild();
+        const leftChild = node.children[0];
+        const rightChild = node.children[1];
         const mid = (leftChild.xPos + rightChild.xPos) / 2;
 
         if (node.isLeftMost()) {
@@ -125,7 +101,6 @@ function calculateInitialX(node) {
     }
 
     if (node.children.length > 0 && !node.isLeftMost()) {
-        // Since subtrees can overlap, check for conflicts and shift tree right if needed
         checkForConflicts(node);
     }
 }
@@ -141,62 +116,29 @@ function checkForConflicts(node) {
     const nodeContour = {};
     getLeftContour(node, 0, nodeContour);
 
-    let sibling = node.getLeftMostSibling();
-    while (sibling !== null && sibling !== node) {
-        const siblingContour = {};
-        getRightContour(sibling, 0, siblingContour);
+    const leftSibling = node.parent.children[0];
 
-        const maxDepthNode = Math.max(...Object.keys(nodeContour).map(Number));
-        const maxDepthSibling = Math.max(...Object.keys(siblingContour).map(Number));
-        const maxDepth = Math.min(maxDepthNode, maxDepthSibling);
+    if (!leftSibling || leftSibling === node) return;
 
-        for (let level = node.yPos + 1; level <= maxDepth; level++) {
-            if (nodeContour[level] !== undefined && siblingContour[level] !== undefined) {
-                const distance = nodeContour[level] - siblingContour[level];
-                if (distance + shiftValue < minDistance) {
-                    shiftValue = minDistance - distance;
-                }
+    const siblingContour = {};
+    getRightContour(leftSibling, 0, siblingContour);
+
+    const maxDepthNode = Math.max(...Object.keys(nodeContour).map(Number));
+    const maxDepthSibling = Math.max(...Object.keys(siblingContour).map(Number));
+    const maxDepth = Math.min(maxDepthNode, maxDepthSibling);
+
+    for (let level = node.yPos + 1; level <= maxDepth; level++) {
+        if (nodeContour[level] !== undefined && siblingContour[level] !== undefined) {
+            const distance = nodeContour[level] - siblingContour[level];
+            if (distance + shiftValue < minDistance) {
+                shiftValue = minDistance - distance;
             }
         }
-
-        if (shiftValue > 0) {
-            node.xPos += shiftValue;
-            node.mod += shiftValue;
-
-            centerNodesBetween(node, sibling);
-
-            shiftValue = 0;
-        }
-
-        sibling = sibling.getNextSibling();
     }
-}
 
-/**
- * Centers the nodes between the left and right siblings after a shift to maintain a tidy layout.
- */
-function centerNodesBetween(leftNode, rightNode) {
-    const leftIndex = leftNode.parent.children.indexOf(rightNode);
-    const rightIndex = leftNode.parent.children.indexOf(leftNode);
-
-    const numNodesBetween = (rightIndex - leftIndex) - 1;
-
-    if (numNodesBetween > 0) {
-        const distanceBetweenNodes = (leftNode.xPos - rightNode.xPos) / (numNodesBetween + 1);
-
-        let count = 1;
-        for (let i = leftIndex + 1; i < rightIndex; i++) {
-            const middleNode = leftNode.parent.children[i];
-
-            const desiredX = rightNode.xPos + (distanceBetweenNodes * count);
-            const offset = desiredX - middleNode.xPos;
-            middleNode.xPos += offset;
-            middleNode.mod += offset;
-
-            count++;
-        }
-
-        checkForConflicts(leftNode);
+    if (shiftValue > 0) {
+        node.xPos += shiftValue;
+        node.mod += shiftValue;
     }
 }
 
