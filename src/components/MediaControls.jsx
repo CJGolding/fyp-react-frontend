@@ -11,7 +11,16 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import {ANIMATION_DELAY_MS} from "../utils/constants.js";
 
-export default function MediaControls({onStop, hasStopped, currentStepIndex, totalSteps, onStepChange, isPlaying, setIsPlaying, stepLabel}) {
+export default function MediaControls({
+                                          onStop,
+                                          hasStopped,
+                                          currentStepIndex,
+                                          totalSteps,
+                                          onStepChange,
+                                          isPlaying,
+                                          setIsPlaying,
+                                          stepLabel
+                                      }) {
 
     const isAtLastStep = currentStepIndex === totalSteps - 1;
 
@@ -63,7 +72,7 @@ export default function MediaControls({onStop, hasStopped, currentStepIndex, tot
                     gap={1}
                 >
                     <Typography
-                        sx={{ color: stepLabel.colour }}
+                        sx={{color: stepLabel.colour}}
                     >
                         {stepLabel.message}
                     </Typography>

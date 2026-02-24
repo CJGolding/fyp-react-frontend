@@ -73,7 +73,7 @@ export const QUEUE_STEP_LABELS = {
     REMOVE: {message: 'Player removed from queue', colour: SimulationColours.REMOVED},
     ANCHOR: {message: 'Selecting anchor player', colour: SimulationColours.ANCHOR},
     GAME_FOUND: {message: 'Best game found', colour: SimulationColours.CREATED},
-    GAME_NOT_FOUND: {message:'No valid game found', colour: SimulationColours.GAME_NOT_FOUND},
+    GAME_NOT_FOUND: {message: 'No valid game found', colour: SimulationColours.GAME_NOT_FOUND},
 }
 
 export const HEAP_STEP_LABELS = {

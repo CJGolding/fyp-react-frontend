@@ -55,7 +55,8 @@ export function renderPlayerNode(parent, x, y, nodeWidth, nodeHeight, fillColor,
 /**
  * Helper function to render a single game node in the game heap visualisation. It displays the following information:
  * - Anchor player ID
- * - Imbalance or priority metric (depending the simulation mode)
+ * - Imbalance or priority metric (depending on the simulation mode)
+ * - Team composition tooltip on hover
  */
 export function renderGameNode(graph, game, colours, posX, posY) {
     const nodeGroup = graph.append('g')
@@ -87,6 +88,76 @@ export function renderGameNode(graph, game, colours, posX, posY) {
         .attr('dy', '1.2em')
         .attr('font-size', '9px')
         .text(`${metricLabel}:${metricValue.toFixed(1)}`);
+
+    const tooltip = nodeGroup.append('g')
+        .attr('transform', `translate(${NODE_SIZE / 2 + 8}, ${-NODE_SIZE / 2})`)
+        .style('display', 'none');
+
+    const maxLen = game.team_x.length;
+    const rowHeight = 12;
+    const colWidth = 36;
+    const padding = 6;
+
+    const width = colWidth * 2;
+    const height = rowHeight * (maxLen + 1) + padding * 2;
+
+    // background
+    tooltip.append('rect')
+        .attr('width', width)
+        .attr('height', height)
+        .attr('fill', 'white')
+        .attr('stroke', '#000')
+        .attr('rx', 4);
+
+    // column headers
+    tooltip.append('text')
+        .attr('x', width / 4)
+        .attr('y', padding + rowHeight - 3)
+        .attr('font-family', 'Arial, sans-serif')
+        .attr('font-size', '9px')
+        .attr('font-weight', 'bold')
+        .attr('text-anchor', 'middle')
+        .text('Team X');
+
+    tooltip.append('text')
+        .attr('x', colWidth + width / 4)
+        .attr('y', padding + rowHeight - 3)
+        .attr('font-family', 'Arial, sans-serif')
+        .attr('font-size', '9px')
+        .attr('font-weight', 'bold')
+        .attr('text-anchor', 'middle')
+        .text('Team Y');
+
+    // team rows
+    for (let i = 0; i < maxLen; i++) {
+        const y = padding + rowHeight * (i + 2) - 3;
+
+        tooltip.append('text')
+            .attr('x', width / 4)
+            .attr('y', y)
+            .attr('font-family', 'Arial, sans-serif')
+            .attr('font-size', '9px')
+            .attr('text-anchor', 'middle')
+            .text(`P${game.team_x[i]}`);
+
+        tooltip.append('text')
+            .attr('x', colWidth + width / 4)
+            .attr('y', y)
+            .attr('font-family', 'Arial, sans-serif')
+            .attr('font-size', '9px')
+            .attr('text-anchor', 'middle')
+            .text(`P${game.team_y[i]}`);
+    }
+
+    nodeGroup
+        .on('mouseover', function () {
+            // bring to front
+            d3.select(this).raise();
+            tooltip.style('display', null);
+        })
+        .on('mouseout', () => {
+            tooltip.style('display', 'none');
+        });
 }
 
 

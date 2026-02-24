@@ -45,8 +45,7 @@ export default function InsertionForm({sessionId, hasStopped, isPlaying, isOnFin
             let data;
             if (isManualInsertion) {
                 data = await insertPlayersManually({sessionId, skill});
-            }
-            else {
+            } else {
                 data = await insertPlayersAutomatically({sessionId, numPlayers, mean, stdDev});
             }
 
