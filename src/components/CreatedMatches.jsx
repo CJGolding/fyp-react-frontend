@@ -27,7 +27,6 @@ import {SimulationColours} from "../utils/constants.js";
 function MatchRow({match, matchIndex, isTimeSensitive}) {
     // Toggle to expand / collapse a match details row
     const [isOpen, setIsOpen] = useState(false);
-
     return (
         <>
             <TableRow sx={{'& > *': {borderBottom: 'unset'}}}>
@@ -57,7 +56,7 @@ function MatchRow({match, matchIndex, isTimeSensitive}) {
                                         <TableCell>Player ID</TableCell>
                                         <TableCell align="center">Skill</TableCell>
                                         {isTimeSensitive && (
-                                            <TableCell align="center">Wait Time</TableCell>
+                                            <TableCell align="center">Enqueue Time</TableCell>
                                         )}
                                     </TableRow>
                                 </TableHead>
@@ -80,7 +79,7 @@ function MatchRow({match, matchIndex, isTimeSensitive}) {
                                                 <TableCell>P{player.id}</TableCell>
                                                 <TableCell align="center">{player.skill}</TableCell>
                                                 {isTimeSensitive && (
-                                                    <TableCell align="center">{player.wait_time}</TableCell>
+                                                    <TableCell align="center">{player.enqueue_time}</TableCell>
                                                 )}
                                             </TableRow>
                                         ))}
@@ -103,7 +102,7 @@ function MatchRow({match, matchIndex, isTimeSensitive}) {
                                                 <TableCell align="center">{player.skill}</TableCell>
                                                 {isTimeSensitive && (
                                                     <TableCell
-                                                        align="center">{player.wait_time}</TableCell>
+                                                        align="center">{player.enqueue_time}</TableCell>
                                                 )}
                                             </TableRow>
                                         ))}
@@ -130,7 +129,7 @@ export default function CreatedMatches({matches, isTimeSensitive}) {
     return (
         <Grid size={{xs: 12}}>
             <Paper style={{padding: 16}}>
-                <Grid container sx={{height: '35vh', flexDirection: 'column', width: '100%', overflow: 'hidden'}}>
+                <Grid container sx={{height: '40vh', flexDirection: 'column', width: '100%', overflow: 'hidden'}}>
                     <Typography variant="h6" gutterBottom sx={{flexShrink: 0}}>
                         Created Matches ({matchesLength})
                     </Typography>
