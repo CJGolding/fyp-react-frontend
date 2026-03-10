@@ -68,7 +68,7 @@ export default function ConfigurationForm({onInitialised}) {
             <Paper elevation={3} style={{padding: 24}}>
                 <Grid container spacing={3}>
                     <Grid size={{xs: 12}}>
-                        <Typography variant="h5" gutterBottom>Configuration</Typography>
+                        <Typography variant="h5" gutterBottom>Simulation Configuration</Typography>
                     </Grid>
                     <Grid size={{xs: 12}}>
                         <TextField

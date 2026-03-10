@@ -1,7 +1,7 @@
 import {Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
 import React from "react";
 
-export default function Parameters({params}) {
+export default function SimulationParameters({params}) {
     const displayParams = Object.fromEntries(
         Object.entries(params).filter(([key, value]) =>
             key !== 'sessionId' &&

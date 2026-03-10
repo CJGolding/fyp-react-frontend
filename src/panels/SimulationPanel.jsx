@@ -1,5 +1,5 @@
 import {Grid} from "@mui/material";
-import Parameters from "../components/Parameters.jsx";
+import SimulationParameters from "../components/SimulationParameters.jsx";
 import InsertionForm from "../components/InsertionForm.jsx";
 import React, {useEffect, useMemo} from "react";
 import PlayerQueue from "../components/PlayerQueue.jsx";
@@ -158,7 +158,7 @@ export default function SimulationPanel(props) {
                         isPlaying={isPlaying}
                         isOnFinalStep={isOnFinalStep}
                     />
-                    <Parameters params={params}/>
+                    <SimulationParameters params={params}/>
 
                 </Grid>
                 <Grid container spacing={3} direction="column" size={{xs: 12, md: 8}}>
